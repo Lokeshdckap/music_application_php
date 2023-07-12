@@ -12,6 +12,10 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
+    <?php if(isset($_SESSION['artist'])):?>
+        <p class = "text-danger"><?php echo $_SESSION['artist']?></p>
+     <?php endif;?>
+     <?php unset($_SESSION['artist'])?>
         <div class="main">
         <form action="/artistStore" method="POST"  enctype="multipart/form-data">
     <div>
@@ -27,7 +31,7 @@
         <input type="file" name="files[]" multiple>
         <input type="text" name="artist" hidden value="artist">
     </div>
-    <div><button type="submit" name="action">Add Artists</button></div>
+    <div><button type="submit" name="action" class="btn btn-primary">Add Artists</button></div>
 </form>
         </div>
 </body>

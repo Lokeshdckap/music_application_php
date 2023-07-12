@@ -1,7 +1,13 @@
 <?php
+
+// if ($_SESSION['roles_as']==0) {
+
+//     $_SESSION['error'] = "Access Denied Your not a Admin";
+//     header('Location: /');
+// }
 $conn['db'] = (new Database())->db;
 
-
+// Premium users store the request 
 
 try{
     if(isset($_POST['action'])) {

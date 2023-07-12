@@ -21,7 +21,7 @@ Coded by www.creative-tim.com
     <link rel="icon" type="image/png" href="../assets/img/favicon.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>
-        Paper Dashboard 2 by Creative Tim
+        Admin Dashboard
     </title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
         name='viewport' />
@@ -55,7 +55,8 @@ Coded by www.creative-tim.com
                 </a>
                 <a href="https://www.creative-tim.com" class="simple-text logo-normal">
                     <div class="logo-image-big">
-                     <img src="images/Logo.svg">
+                            <p>My Music App</p>
+                            <a href="#" class="nav-link text-white">Hello Admin</a>
                    </div>
                 </a>
             </div>
@@ -63,44 +64,44 @@ Coded by www.creative-tim.com
                 <ul class="nav">
                     <li class="activeBtn">
                     <a class="nav-link text-white  <?php if ($_SERVER["REQUEST_URI"] == '/dashboard') echo "bg-info";?>" href="/dashboard">
-                        <i class="fa-solid fa-pen-to-square"></i>
+                    <i class="fa-solid fa-gauge"></i>
                         <p>Dashboard</p>
                     </a>
                     </li>
                     <li>
                       <a class="nav-link text-white  <?php if ($_SERVER["REQUEST_URI"] == '/allArtists') echo "bg-info";?>" href="/allArtists">
-                            <i class="fa-solid fa-calendar-days"></i>
+                        <i class="fa-solid fa-list"></i>
                             <p>All Artist</p>
                         </a>
                     </li>
                     <li>
                     <a class="nav-link text-white  <?php if ($_SERVER["REQUEST_URI"] == '/artist') echo "bg-info";?>" href="/artist">
-                            <i class="fa-solid fa-clock-rotate-left"></i>
+                    <i class="fa-solid fa-plus"></i>
                             <p>Add Artist</p>
                         </a>
                     </li>
                     <li>
                     <a class="nav-link text-white  <?php if ($_SERVER["REQUEST_URI"] == '/allSongs') echo "bg-info";?>" href="/allSongs">
-                            <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-music"></i>
                             <p>All songs</p>
                         </a>
                     </li>
                     <li>
                     <a class="nav-link text-white  <?php if ($_SERVER["REQUEST_URI"] == '/addSong') echo "bg-info";?>" href="/addSong">
-                            <i class="fa-solid fa-share-from-square"></i>
+                    <i class="fa-solid fa-plus"></i>
                             <p>Add Songs</p>
                         </a>
                     </li>
                     <li>
                     <li>
                     <a class="nav-link text-white  <?php if ($_SERVER["REQUEST_URI"] == '/allUsers') echo "bg-info";?>" href="/allUsers">
-                            <i class="fa-solid fa-share-from-square"></i>
+                    <i class="fa-solid fa-user"></i>
                             <p>All Users</p>
                         </a>
                     </li>
                     <li>
-                        <a href="#">
-                            <i class="fa-solid fa-gear"></i>
+                        <a href="/logout">
+                        <i class="fa-solid fa-right-from-bracket"></i>
                             <p>Logout</p>
                         </a>
                     </li>
@@ -129,9 +130,9 @@ Coded by www.creative-tim.com
                     </button>
                     <div class="collapse navbar-collapse justify-content-end" id="navigation">
                         <form>
-                            <div class="input-group my-19">
+                            <!-- <div class="input-group my-19">
                                 <input type="search" id="search" value="" class="form-control search" placeholder="Search Your Journals" style="width:600px ;">
-                            </div>
+                            </div> -->
                         </form>
                         <ul class="navbar-nav">
                             <li class="nav-item">
@@ -142,14 +143,14 @@ Coded by www.creative-tim.com
                                     </p>
                                 </a>
                             </li>
-                            <li class="nav-item btn-rotate dropdown nav">
-                                <img src="./images/dark_mode.svg" class="darkMode" id="darkMode" />
-                                <img src="./images/Alert.svg" class="alertIcon" id="alertIcon" />
+                            <!-- <li class="nav-item btn-rotate dropdown nav"> -->
+                                <!-- <img src="./images/dark_mode.svg" class="darkMode" id="darkMode" />
+                                <img src="./images/Alert.svg" class="alertIcon" id="alertIcon" /> -->
                                 <!-- <i class="fa-solid fa-moon"></i>
                                 <i class="fa-solid fa-bell"></i> -->
                                 <!-- <img src="" class="profile" /> -->
 
-                                <i class="fa-solid fa-user profile"></i>
+                                <!-- <i class="fa-solid fa-user profile"></i>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link btn-rotate" href="javascript:;">
@@ -158,7 +159,7 @@ Coded by www.creative-tim.com
                                         <span class="d-lg-none d-md-block">Account</span>
                                     </p>
                                 </a>
-                            </li>
+                            </li> -->
                         </ul>
                     </div>
                 </div>
@@ -170,7 +171,7 @@ Coded by www.creative-tim.com
                     <div class="container">
                         <h6 class="mb-0">
                             <a href="" style="color: black; text-decoration: none;">
-                                /Home<i class="fa-solid fa-house"></i>
+                              Admin Dashboard<i class="fa-solid fa-house"></i>
                             </a>
                         </h6>
                     </div>
@@ -181,7 +182,6 @@ Coded by www.creative-tim.com
                       <div class="card">
                       <div class="card-body">
                         <li>All Users Count</li>
-                        <!-- <h2><?php echo(count($_SESSION['users']))?></h2> -->
                       </div>
                     </div>
                     </div> 
@@ -191,11 +191,11 @@ Coded by www.creative-tim.com
                     <div class="userContents" style="display: flex;">
                       <div class="card">
                       <div class="card-body">
-                      <?php foreach($allData as $datas):?>
+                      <?php foreach($_SESSION['artist'] as $datas):?>
                       <ul>
                       <li><b>Artist Name</b> : <?php echo $datas['artist_name'];?></li>
                       <img src="<?php echo $datas['image_path']?>" width="100px" hieght="100px">
-                      <button type="submit" class="edit" name="edit" value="<?php echo $datas['id'];?>">Delete</button>
+                      <button type="submit" class="btn btn-primary" name="edit" value="<?php echo $datas['id'];?>">Delete</button>
                     </ul>
                     <?php endforeach;?>
                       </div>
@@ -212,26 +212,31 @@ Coded by www.creative-tim.com
                       <ul>
                       <li><b>UserName</b> : <?php echo $datas['name'];?></li>
                       <!-- <li><b></b> : <?php echo $datas['name'];?></li> -->
-                      <button type="submit" class="edit" name="edit" value="<?php echo $datas['id'];?>">Delete</button>
+                      <!-- <button type="submit" class="edit" name="edit" value="<?php echo $datas['id'];?>">Delete</button> -->
                     </ul>
                     <?php endforeach;?>
+                    </div>
+                    </div>
+                    </div>
+
                     <h5>Request For Permium Users</h5>
                     <?php foreach($request as $requests):?>
                       <li><b>UserName</b> : <?php echo $requests['name'];?></li>
                       <li><b>Request</b> : <?php echo $requests['request'];?></li>
+                      <?php if($requests['is_premium']) : ?>
+                      <li><b>Status</b> : <button class="btn btn-success">Approved For Premium Account</button></li>
+                       <?php else : ?>
+                      <li><b>Status</b> : <button class="btn btn-warning">Waiting For Approved</button></li>
+                      <?php endif; ?>
                       <form action="/update" method="post">
                       <select class="form-select" name="premium">
-                            <option value="">Select a Premium</option>
+                            <option value="">Select a Premium yes or no</option>
                              <option value="1">Yes</option>
                              <option value="0">No</option>
                          </select>
-                      <button type="submit" class="edit" name="action" value="<?php echo $_SESSION['id'];?>">Update</button>
+                      <button type="submit" class="btn btn-primary" name="action" value="<?php echo $requests['id'];?>">Update</button>
                          </form>
                       <?php endforeach;?>
-                   
-                      </div>
-                    </div>
-                    </div> 
                     
                 </div>
                 <div class="row">
@@ -246,7 +251,7 @@ Coded by www.creative-tim.com
                       <li><b>Artist Name</b> : <?php echo $datas['artist_name'];?></li>
                       <img src="<?php echo $datas['image_path']?>" width="100px" hieght="100px">
                       <audio controls src="<?php echo $datas['file_name']?>"></audio>
-                      <button type="submit" class="edit" name="edit" value="<?php echo $datas['id'];?>">Delete</button>
+                      <button type="submit" class="btn btn-primary" name="edit" value="<?php echo $datas['id'];?>">Delete</button>
                     </ul>
                     <?php endforeach;?>
                       </div>

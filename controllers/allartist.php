@@ -1,13 +1,25 @@
 <?php
+
+
+// Block the normal users
+
+if ($_SESSION['roles_as']==0) {
+
+    $_SESSION['error'] = "Access Denied Your not a Admin";
+    header('Location: /');
+}
 $conn['db'] = (new Database())->db;
+
+ // Fetch the all artists in database 
 
 try{
 
     $statement = $conn['db']->query('SELECT artist.artist_name, images.image_path
     FROM artist
-    INNER JOIN images ON artist.id=images.model_id limit 1');
+    INNER JOIN images ON artist.id=images.model_id and images.model_name = "artist"');
     $allData = $statement->fetchAll();
-    // var_dump($allData);
+
+    $_SESSION['artist'] = $allData;
     require "views/admin.view.php";
 
 }

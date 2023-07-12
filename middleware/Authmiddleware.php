@@ -1,6 +1,6 @@
 <?php
-namespace core\middleware;
 
+// To check the auth users 
 class Authmiddleware{
   
     public function handler(){

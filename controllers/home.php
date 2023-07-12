@@ -1,12 +1,18 @@
 <?php
+// Block the normal users to admin panel
+if ($_SESSION['roles_as']==0) {
+
+    $_SESSION['error'] = "Access Denied Your not a Admin";
+    header('Location: /');
+}
 require 'views/admin.view.php';
 
 
 $conn['db'] = (new Database())->db;
 
 try{
-    // $id= $_POST['projects'];
-
+    
+// Fecth the all users to Admin Dashboard
     $statement = $conn['db']->query('SELECT * from users');
     $allData = $statement->fetchAll();
 

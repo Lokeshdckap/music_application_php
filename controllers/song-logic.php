@@ -1,5 +1,11 @@
 <?php
 
+
+if ($_SESSION['roles_as']==0) {
+
+    $_SESSION['error'] = "Access Denied Your not a Admin";
+    header('Location: /');
+}
 $conn['db'] = (new Database())->db;
 
 
@@ -12,8 +18,17 @@ try{
     $album_id = $_POST['album_id'];
     $song_name = $_POST['song_name'];
     $type = $_POST['song'];
+// fetch the all songs to admin panel 
+    if($song_name){
+        $statement = $conn['db']->query("select * from songs where name ='$song_name'");
+        $exists = $statement->fetchAll();
 
-
+        if($exists){
+            $_SESSION['song']  = ' Song Already Exists';
+            header('location:/addSong');
+        }
+ else{
+// add the song in the database 
     $uploadFolder = 'songs/';
     foreach ($_FILES['song']['tmp_name'] as $key => $image) {
     $imageTmpName = $_FILES['song']['tmp_name'][$key];
@@ -34,9 +49,10 @@ try{
 
     $query = $conn['db']->query("INSERT INTO images(image_path,model_id,model_name)VALUES('$uploadFolder$imageName','$id','$type')");
     }
-
-    }
     header('Location:/dashboard');
+    }
+}
+}
 }
 catch(Expection $e)
 {

@@ -1,4 +1,5 @@
 <?php
+// To check Guest Users using Middlewares
 class Guestmiddleware{
   
     public function handler(){

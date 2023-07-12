@@ -33,6 +33,7 @@ class Router
     }
 
     public function routes(){
+        $arr = [];
         foreach($this->route as $routers){
             if($routers['uri']=== $_SERVER['REQUEST_URI']){
 
@@ -46,9 +47,15 @@ class Router
                     $routing->handler();
                  }
 
-                return $routers['controller'];
+                 $arr['controller'] = $routers['controller'];
             }
         }
+        if(empty($arr['controller'])){
+            require 'error.php';
+         }
+         else{
+          return $arr['controller'];
+         }
         exit();
     }
 }
